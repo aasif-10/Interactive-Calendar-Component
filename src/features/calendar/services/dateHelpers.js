@@ -58,3 +58,25 @@ export const isBetweenDays = (date, start, end) => {
   const upper = s > e ? s : e;
   return d > lower && d < upper;
 };
+
+/**
+ * Object mapping static US public holidays in MM-DD format to their names.
+ */
+export const PUBLIC_HOLIDAYS = {
+  "01-01": "New Year's Day",
+  "07-04": "Independence Day",
+  "10-31": "Halloween",
+  "11-11": "Veterans Day",
+  "12-25": "Christmas Day",
+  "12-31": "New Year's Eve",
+};
+
+/**
+ * Returns the name of the public holiday if the given date is a holiday, otherwise null.
+ */
+export const getPublicHoliday = (date) => {
+  if (!date) return null;
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return PUBLIC_HOLIDAYS[`${month}-${day}`] || null;
+};

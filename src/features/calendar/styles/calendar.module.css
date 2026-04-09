@@ -257,6 +257,34 @@
   color: var(--reset-btn);
 }
 
+.isHoliday {
+  color: #ef4444; /* Red ink for traditional wall calendar holidays */
+  font-weight: 600;
+}
+
+.holidayNameText {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 100%;
+  font-size: 0.55rem;
+  line-height: 1;
+  text-align: center;
+  color: #ef4444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 4px;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+
+.selectedStart .holidayNameText,
+.selectedEnd .holidayNameText,
+.selectedSingle .holidayNameText {
+  color: var(--primary-text);
+}
+
 .selectedStart,
 .selectedEnd,
 .selectedSingle {

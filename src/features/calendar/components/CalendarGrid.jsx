@@ -4,6 +4,7 @@ import {
   getFirstDayOfMonth,
   isSameDay,
   isBetweenDays,
+  getPublicHoliday,
 } from "../services/dateHelpers";
 import { format } from "date-fns";
 import CalendarDay from "./CalendarDay";
@@ -59,6 +60,7 @@ export default function CalendarGrid() {
 
           const isToday = isSameDay(date, today);
           const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+          const holidayName = getPublicHoliday(date);
 
           let isSelectedStart = isSameDay(date, startDate);
           let isSelectedEnd = isSameDay(date, endDate);
@@ -77,6 +79,7 @@ export default function CalendarGrid() {
               key={date.toISOString()}
               date={date}
               isToday={isToday}
+              holidayName={holidayName}
               isWeekend={isWeekend}
               isSelectedStart={isSelectedStart}
               isSelectedEnd={isSelectedEnd}

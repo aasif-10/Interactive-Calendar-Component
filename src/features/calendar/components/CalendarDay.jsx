@@ -12,6 +12,7 @@ export default function CalendarDay({
   date,
   isToday,
   isWeekend,
+  holidayName,
   isSelectedStart,
   isSelectedEnd,
   isInRange,
@@ -29,16 +30,24 @@ export default function CalendarDay({
       className={clsx(styles.dayCell, styles.fadeIn, {
         [styles.isToday]: isToday && !isSelectedStart && !isSelectedEnd,
         [styles.isWeekend]: isWeekend,
+        [styles.isHoliday]: !!holidayName,
         [styles.selectedStart]: isSelectedStart && !isSingleDaySelected,
         [styles.selectedEnd]: isSelectedEnd && !isSingleDaySelected,
         [styles.selectedSingle]: isSingleDaySelected,
         [styles.inRange]: isInRange,
         [styles.inHoverRange]: isInHoverRange && !isInRange,
       })}
-      aria-label={date.toDateString()}
+      aria-label={
+        holidayName
+          ? `${date.toDateString()} - ${holidayName}`
+          : date.toDateString()
+      }
       aria-pressed={isSelectedStart || isSelectedEnd || isInRange}
     >
       {date.getDate()}
+      {holidayName && (
+        <span className={styles.holidayNameText}>{holidayName}</span>
+      )}
       {hasNote && <span className="dayNoteIndicator" />}
     </button>
   );
