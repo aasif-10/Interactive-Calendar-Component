@@ -155,8 +155,22 @@
   height: 32px;
   /* Wire coil effect */
   background-image:
-    linear-gradient(90deg, transparent 13px, #6b7280 13px, #6b7280 14px, #e5e7eb 14px, #e5e7eb 17px, #6b7280 17px, #6b7280 18px, transparent 18px),
-    radial-gradient(circle at 16px 14px, rgba(0, 0, 0, 0.8) 4px, transparent 4px),
+    linear-gradient(
+      90deg,
+      transparent 13px,
+      #6b7280 13px,
+      #6b7280 14px,
+      #e5e7eb 14px,
+      #e5e7eb 17px,
+      #6b7280 17px,
+      #6b7280 18px,
+      transparent 18px
+    ),
+    radial-gradient(
+      circle at 16px 14px,
+      rgba(0, 0, 0, 0.8) 4px,
+      transparent 4px
+    ),
     radial-gradient(circle at 16px 16px, var(--bg-color) 4px, transparent 4px),
     radial-gradient(circle at 16px 16px, var(--subtext) 5px, transparent 5px);
   background-size: 32px 32px;
