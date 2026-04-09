@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg-color: #f3f4f6;
+  --text-color: #111827;
+  --subtext: #6b7280;
+  --wrapper-bg: #ffffff;
+  --wrapper-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
+  --btn-bg: rgba(0, 0, 0, 0.05);
+  --btn-border: transparent;
+  --btn-hover: rgba(0, 0, 0, 0.1);
+
+  --panel-bg: #ffffff;
+  --panel-border: #e5e7eb;
+
+  --day-bg: transparent;
+  --day-text: #1f2937;
+  --day-hover-bg: #f9fafb;
+  --day-today-bg: transparent;
+  --day-today-text: #000000;
+
+  --primary-color: #0ea5e9;
+  --primary-text: #ffffff;
+
+  --day-range-bg: rgba(14, 165, 233, 0.1);
+  --day-range-text: #0369a1;
+  --range-display: #6b7280;
+  --reset-btn: #ef4444;
+  --reset-btn-hover: #fee2e2;
+  --weekdays-text: #9ca3af;
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+
+  /* notes */
+  --notes-bg: #ffffff;
+  --notes-border: #e5e7eb;
+  --notes-text: #1f2937;
+
+  /* backward compat */
+  --day-today: var(--day-today-text);
+}
+
+[data-theme="dark"] {
+  --bg-color: #09090b;
+  --text-color: #f9fafb;
+  --subtext: #a1a1aa;
+  --wrapper-bg: #171717;
+  --wrapper-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6);
+  --btn-bg: rgba(255, 255, 255, 0.1);
+  --btn-border: rgba(255, 255, 255, 0.05);
+  --btn-hover: rgba(255, 255, 255, 0.15);
+
+  --panel-bg: #1f1f1f;
+  --panel-border: #2dd2d;
+
+  --day-text: #e5e7eb;
+  --day-hover-bg: #262626;
+  --day-today-bg: transparent;
+  --day-today-text: #ffffff;
+
+  --primary-color: #38bdf8;
+  --primary-text: #000000;
+
+  --day-range-bg: rgba(56, 189, 248, 0.15);
+  --day-range-text: #e0f2fe;
+  --range-display: #9ca3af;
+  --reset-btn: #f87171;
+  --reset-btn-hover: #450a0a;
+  --weekdays-text: #a1a1aa;
+
+  --glass-bg: rgba(0, 0, 0, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  --notes-bg: #262626;
+  --notes-border: #404040;
+  --notes-text: #f9fafb;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--bg-color);
+  -webkit-font-smoothing: antialiased;
+  color: var(--text-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+.hoverRange {
+  background-color: var(--day-range-bg) !important;
+  opacity: 0.5;
+  border-radius: 0;
+}
+.dayNoteIndicator {
+  position: absolute;
+  bottom: 6px;
+  width: 4px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 50%;
+}

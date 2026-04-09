@@ -1,0 +1,374 @@
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  padding: 2rem;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: var(--text-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.calendarWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 1300px;
+  background: var(--wrapper-bg);
+  border-radius: 20px;
+  box-shadow: var(--wrapper-shadow);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  .calendarWrapper {
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 650px;
+    height: auto;
+  }
+}
+
+/* 1. Hero Section */
+.heroSection {
+  box-sizing: border-box;
+  flex: 0 1 25%;
+  min-width: 0;
+  position: relative;
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.monthNav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navButton {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+.navButton:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.themeToggle {
+  margin-left: auto;
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -2px;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.heroYear {
+  font-size: 1.5rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-top: -0.25rem;
+}
+
+.heroSubtitle {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+}
+
+/* 2. Calendar Section */
+.calendarSection {
+  box-sizing: border-box;
+  flex: 0 1 45%;
+  padding: 3rem 1.5rem 2rem 1.5rem;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--wrapper-bg);
+  z-index: 2;
+  transition: background-color 0.3s ease;
+  border-right: 1px solid var(--panel-border);
+  position: relative;
+}
+
+.calendarSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  /* Wire coil effect */
+  background-image:
+    linear-gradient(90deg, transparent 13px, #6b7280 13px, #6b7280 14px, #e5e7eb 14px, #e5e7eb 17px, #6b7280 17px, #6b7280 18px, transparent 18px),
+    radial-gradient(circle at 16px 14px, rgba(0, 0, 0, 0.8) 4px, transparent 4px),
+    radial-gradient(circle at 16px 16px, var(--bg-color) 4px, transparent 4px),
+    radial-gradient(circle at 16px 16px, var(--subtext) 5px, transparent 5px);
+  background-size: 32px 32px;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  z-index: 10;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--weekdays-text);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  box-sizing: border-box;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  padding: 1rem;
+  background: var(--calendar-bg, transparent);
+  border: 1px solid var(--panel-border);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+}
+
+.dayCell {
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--day-text);
+  background: var(--day-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  user-select: none;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.02);
+}
+
+.dayCell:hover:not(.empty):not(.selected):not(.disabled) {
+  background: var(--day-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dayCell:active {
+  transform: scale(0.95);
+}
+
+.empty {
+  pointer-events: none;
+}
+
+.isToday {
+  color: var(--day-today-text);
+  font-weight: 700;
+}
+
+.isToday::after {
+  content: "";
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.isWeekend {
+  color: var(--reset-btn);
+}
+
+.selectedStart,
+.selectedEnd,
+.selectedSingle {
+  background: var(--primary-color) !important;
+  color: var(--primary-text) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  font-weight: 700;
+  border: 1px solid var(--primary-color);
+}
+
+.inRange {
+  background: var(--day-range-bg) !important;
+  color: var(--day-range-text) !important;
+  border-radius: 0;
+  border: 1px solid transparent;
+}
+
+.selectedStart.inRange {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+.selectedEnd.inRange {
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+
+/* 3. Notes Section */
+.notesSection {
+  box-sizing: border-box;
+  flex: 1 1 30%;
+  padding: 2rem;
+  min-width: 250px;
+  background: var(--panel-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto;
+}
+
+.controlsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rangeDisplay {
+  font-size: 0.9rem;
+  color: var(--range-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resetButton {
+  background: none;
+  border: none;
+  color: var(--reset-btn);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+
+.resetButton:hover {
+  background: var(--reset-btn-hover);
+}
+
+.notesPanel {
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background: var(--wrapper-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  flex: 1;
+}
+
+.notesPanel h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-color);
+}
+
+.notesTextarea {
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text-color);
+  resize: none;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  flex: 1;
+  outline: none;
+}
+.notesTextarea::placeholder {
+  color: var(--subtext);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
