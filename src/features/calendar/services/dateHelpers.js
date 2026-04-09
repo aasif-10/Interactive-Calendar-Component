@@ -60,15 +60,19 @@ export const isBetweenDays = (date, start, end) => {
 };
 
 /**
- * Object mapping static US public holidays in MM-DD format to their names.
+ * Object mapping static Indian public holidays in MM-DD format to their names.
+ * Note: Religious holidays based on lunar calendars (like Diwali, Eid, Eid-ul-Fitr, Holi) change yearly,
+ * so this list focuses on standard national and widely recognized fixed-date holidays.
  */
 export const PUBLIC_HOLIDAYS = {
   "01-01": "New Year's Day",
-  "07-04": "Independence Day",
-  "10-31": "Halloween",
-  "11-11": "Veterans Day",
+  "01-14": "Makar Sankranti",
+  "01-26": "Republic Day",
+  "04-14": "Ambedkar Jayanti",
+  "05-01": "Labour Day",
+  "08-15": "Independence Day",
+  "10-02": "Gandhi Jayanti",
   "12-25": "Christmas Day",
-  "12-31": "New Year's Eve",
 };
 
 /**
